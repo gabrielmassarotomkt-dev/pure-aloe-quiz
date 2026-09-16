@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Diagnóstico Capilar Gratuito | Pure Aloe</title>
+<meta name="description" content="Descubra em 60 segundos o estágio da sua queda capilar e se o Protocolo Pure Aloe é compatível com o seu caso.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #f8f9f7;
+    --surface: #ffffff;
+    --surface-soft: #fbfcfb;
+    --text: #1e2921;
+    --text-muted: #6b7a6d;
+    --border: #e9ede6;
+    --primary-1: #425c44;
+    --primary-2: #5d7a5f;
+    --accent: #f37021;
+    --accent-soft: #fdf2f2;
+    --danger-text: #c0392b;
+    --whatsapp: #25d366;
+    --whatsapp-hover: #1ebd5b;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    max-width: 36rem;
+    margin: 0 auto;
+    padding: 40px 24px 56px;
+    min-height: 100vh;
+  }
+
+  .brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    opacity: 0.85;
+  }
+  .brand-row svg { color: var(--primary-1); width: 1.3em; height: 1.3em; }
+  .brand-row span {
+    font-size: 12px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.25em; color: var(--primary-1);
+  }
+
+  .nature-gradient { background: linear-gradient(135deg, var(--primary-1) 0%, var(--primary-2) 100%); }
+
+  .icon {
+    width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .screen { display: none; animation: fadeSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
+  .screen.active { display: block; }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- Intro ---------- */
+  .intro-head { text-align: center; margin-bottom: 32px; }
+  .intro-badge {
+    display: inline-block; font-size: 10px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.15em; padding: 7px 14px; border-radius: 999px; margin-bottom: 20px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .intro-title {
+    font-size: 30px; font-weight: 800; line-height: 1.15; margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .intro-title em { font-style: italic; color: var(--accent); }
+  .intro-subtitle {
+    font-size: 15px; line-height: 1.6; color: var(--text-muted);
+    max-width: 26rem; margin: 0 auto;
+  }
+  @media (min-width: 480px) {
+    .intro-title { font-size: 36px; }
+  }
+
+  .feature-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 2rem; padding: 24px; margin-bottom: 28px;
+  }
+  .feature-item { display: flex; align-items: flex-start; gap: 14px; }
+  .feature-item + .feature-item { margin-top: 16px; }
+  .feature-icon {
+    flex-shrink: 0; width: 32px; height: 32px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center; color: #fff;
+  }
+  .feature-icon svg { width: 0.9em; height: 0.9em; }
+  .feature-text { font-size: 13px; line-height: 1.55; padding-top: 4px; }
+
+  .cta-button {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; padding: 19px 20px; border: none; border-radius: 1.1rem;
+    color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 14px; box-shadow: 0 12px 24px -8px rgba(66, 92, 68, 0.4);
+    cursor: pointer; transition: transform 0.15s ease; font-family: inherit;
+  }
+  .cta-button:active { transform: scale(0.98); }
+
+  .social-proof {
+    margin-top: 16px; text-align: center; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted);
+  }
+
+  /* ---------- Quiz ---------- */
+  .quiz-progress-row {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;
+  }
+  .quiz-step-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--text-muted);
+  }
+  .quiz-percent-label { font-size: 11px; font-weight: 700; color: var(--accent); }
+
+  #progress-track { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 32px; }
+  #progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--primary-1), var(--accent));
+    border-radius: 999px; transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1); width: 0%;
+  }
+
+  .question-title { font-size: 21px; font-weight: 800; line-height: 1.3; margin: 0 0 6px; text-wrap: balance; }
+  .question-subtitle { font-size: 12px; color: var(--text-muted); margin: 0 0 24px; }
+
+  .option-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .opt-btn {
+    width: 100%; text-align: left; background: var(--surface);
+    border: 1.5px solid var(--border); border-radius: 1.1rem;
+    padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+    transition: all 0.18s ease; cursor: pointer; font-family: inherit;
+  }
+  .opt-btn:active { transform: scale(0.98); }
+  .opt-btn:hover { border-color: var(--primary-2); background: #f6f8f5; }
+  .opt-btn.selected { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 4px 14px rgba(243,112,33,0.12); }
+  .opt-dot {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 999px;
+    border: 2px solid var(--border); display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s ease;
+  }
+  .opt-btn.selected .opt-dot { border-color: var(--accent); background: var(--accent); }
+  .opt-dot svg { width: 12px; height: 12px; opacity: 0; transform: scale(0.5); transition: all 0.18s ease; stroke: #fff; }
+  .opt-btn.selected .opt-dot svg { opacity: 1; transform: scale(1); }
+  .opt-label { font-size: 14px; font-weight: 600; line-height: 1.4; }
+
+  .back-button {
+    margin-top: 24px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--text-muted); background: none; border: none;
+    display: flex; align-items: center; gap: 4px; cursor: pointer; padding: 0; font-family: inherit;
+  }
+  .back-button svg { width: 0.9em; height: 0.9em; }
+
+  /* ---------- Loading ---------- */
+  .loading-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 64px 0; }
+  .loader-ring {
+    width: 84px; height: 84px; border-radius: 999px; margin-bottom: 32px;
+    border: 5px solid var(--border); border-top-color: var(--accent);
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-title { font-size: 18px; font-weight: 700; margin: 0 0 8px; }
+  .loading-status { font-size: 14px; color: var(--text-muted); margin: 0; }
+  .loading-meter-wrap { width: 100%; max-width: 260px; margin-top: 24px; }
+
+  .meter-track { height: 14px; background: var(--border); border-radius: 999px; overflow: hidden; }
+  .meter-fill {
+    height: 100%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary-1), var(--accent));
+    width: 0%; transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ---------- Result ---------- */
+  .result-head { text-align: center; margin-bottom: 24px; }
+  .result-tag {
+    display: inline-block; font-size: 10px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.15em; padding: 7px 14px; border-radius: 999px; margin-bottom: 16px;
+  }
+  .result-title { font-size: 24px; font-weight: 800; line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+  .result-desc { font-size: 14px; line-height: 1.6; color: var(--text-muted); max-width: 26rem; margin: 0 auto; }
+  @media (min-width: 480px) { .result-title { font-size: 28px; } }
+
+  .compat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 24px; margin-bottom: 24px; }
+  .compat-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .compat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+  .compat-value { font-size: 15px; font-weight: 800; color: var(--primary-1); }
+
+  .featured-alert {
+    background: var(--surface); border: 2px solid var(--accent); border-radius: 2rem;
+    padding: 24px; margin-bottom: 28px; box-shadow: 0 18px 40px -20px rgba(243,112,33,0.3);
+  }
+  .alert-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .alert-icon { color: #fff; background: var(--accent); padding: 8px; border-radius: 0.6rem; display: flex; }
+  .alert-icon svg { width: 1.1em; height: 1.1em; }
+  .alert-label { font-weight: 800; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; color: var(--accent); }
+  .alert-text { font-size: 14px; line-height: 1.6; margin: 0; }
+
+  .whatsapp-cta {
+    display: flex; align-items: center; justify-content: center; width: 100%;
+    padding: 19px 20px; color: #fff; font-weight: 800; border-radius: 1.1rem;
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 14px; text-decoration: none;
+    background: var(--whatsapp); box-shadow: 0 16px 32px -12px rgba(37,211,102,0.5);
+    transition: background 0.15s ease, transform 0.15s ease;
+    animation: soft-pulse 2.5s infinite;
+  }
+  .whatsapp-cta:hover { background: var(--whatsapp-hover); }
+  .whatsapp-cta:active { transform: scale(0.98); }
+  .whatsapp-cta svg { width: 1.3em; height: 1.3em; margin-right: 0.6em; flex-shrink: 0; fill: currentColor; stroke: none; }
+  @keyframes soft-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.3); }
+    70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+
+  .testimonial-box { background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 22px; margin-bottom: 24px; text-align: center; }
+  .testimonial-label { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin: 0 0 16px; }
+  .testimonial-label svg { width: 1.1em; height: 1.1em; color: var(--accent); }
+  .testimonial-video { position: relative; width: 100%; max-width: 240px; margin: 0 auto; aspect-ratio: 9 / 16; border-radius: 1.3rem; overflow: hidden; background: #10140f; box-shadow: 0 16px 32px -16px rgba(30,41,33,0.35); cursor: pointer; }
+  .testimonial-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .testimonial-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .testimonial-video::after { content: ''; position: absolute; inset: 0; background: rgba(16,20,15,0.18); transition: background 0.2s ease; }
+  .testimonial-video:hover::after { background: rgba(16,20,15,0.3); }
+  .testimonial-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 56px; height: 56px; border-radius: 999px; background: rgba(255,255,255,0.95);
+    display: flex; align-items: center; justify-content: center; z-index: 2;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: transform 0.18s ease;
+  }
+  .testimonial-video:hover .testimonial-play { transform: translate(-50%, -50%) scale(1.08); }
+  .testimonial-play svg { width: 22px; height: 22px; color: var(--accent); margin-left: 3px; }
+
+  .footer-note { margin-top: 20px; text-align: center; font-size: 9px; color: #9aa39b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; }
+
+  .restart-button {
+    width: 100%; margin-top: 20px; padding: 12px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted);
+    background: none; border: none; cursor: pointer; font-family: inherit;
+  }
+
+  footer.page-footer { padding: 40px 0; text-align: center; opacity: 0.3; }
+  footer.page-footer p { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4em; margin: 0; }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="brand-row">
+    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2c-1.5 4-6 5.5-6 11a6 6 0 0 0 12 0c0-5.5-4.5-7-6-11Z"/></svg>
+    <span>Pure Aloe</span>
+  </div>
+
+  <!-- SCREEN 0: INTRO -->
+  <section id="screen-intro" class="screen active">
+    <div class="intro-head">
+      <span class="intro-badge">Diagnóstico gratuito · 60 segundos</span>
+      <h1 class="intro-title">Descubra o <em>estágio real</em> da sua queda capilar</h1>
+      <p class="intro-subtitle">Responda 6 perguntas rápidas e veja se o seu caso é compatível com o Protocolo Pure Aloe de preenchimento folicular — antes de agendar seu diagnóstico com o Jorge.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-item">
+        <div class="feature-icon nature-gradient"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <p class="feature-text"><strong>Resultado personalizado</strong> com o estágio da sua queda capilar e a compatibilidade com o protocolo.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon nature-gradient"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <p class="feature-text">Sem cadastro, sem enrolação — leva menos de 1 minuto.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon nature-gradient"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <p class="feature-text">Ao final, você fala direto com o Jorge no WhatsApp já com seu diagnóstico em mãos.</p>
+      </div>
+    </div>
+
+    <button onclick="startQuiz()" class="cta-button nature-gradient">Iniciar meu diagnóstico →</button>
+    <p class="social-proof">+500 mulheres já diagnosticadas</p>
+  </section>
+
+  <!-- SCREEN 1: QUIZ -->
+  <section id="screen-quiz" class="screen">
+    <div class="quiz-progress-row">
+      <span id="quiz-step-label" class="quiz-step-label">Pergunta 1 de 6</span>
+      <span id="quiz-percent-label" class="quiz-percent-label">0%</span>
+    </div>
+    <div id="progress-track"><div id="progress-fill"></div></div>
+
+    <div id="question-container"></div>
+  </section>
+
+  <!-- SCREEN 2: LOADING -->
+  <section id="screen-loading" class="screen">
+    <div class="loading-wrap">
+      <div class="loader-ring"></div>
+      <h3 class="loading-title">Analisando seu perfil capilar...</h3>
+      <p id="loading-status" class="loading-status">Cruzando suas respostas</p>
+      <div class="loading-meter-wrap"><div class="meter-track"><div id="loading-fill" class="meter-fill"></div></div></div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: RESULT -->
+  <section id="screen-result" class="screen">
+    <div class="result-head">
+      <span id="result-tag" class="result-tag"></span>
+      <h2 id="result-title" class="result-title"></h2>
+      <p id="result-desc" class="result-desc"></p>
+    </div>
+
+    <div class="compat-box">
+      <div class="compat-row">
+        <span class="compat-label">Compatibilidade com o Protocolo Pure Aloe</span>
+        <span id="compat-value" class="compat-value">0%</span>
+      </div>
+      <div class="meter-track"><div id="compat-fill" class="meter-fill"></div></div>
+    </div>
+
+    <div class="featured-alert">
+      <div class="alert-head">
+        <div class="alert-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <span class="alert-label">Próximo passo</span>
+      </div>
+      <p class="alert-text">O Jorge realiza apenas <strong>3 diagnósticos aprofundados por dia</strong>, com base no seu resultado acima. Fale agora e garanta sua vaga antes que a agenda feche.</p>
+    </div>
+
+    <div class="testimonial-box">
+      <p class="testimonial-label">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        Quem já passou pelo protocolo
+      </p>
+      <div class="testimonial-video" id="testimonial-video" data-video-id="VXsizdncMgs" onclick="playTestimonial()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();playTestimonial();}" role="button" tabindex="0" aria-label="Assistir depoimento em vídeo">
+        <img class="testimonial-thumb" src="https://i.ytimg.com/vi/VXsizdncMgs/hqdefault.jpg" alt="Depoimento de cliente Pure Aloe" loading="lazy">
+        <span class="testimonial-play">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <a id="whatsapp-cta" href="#" target="_blank" rel="noopener" class="whatsapp-cta">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.017 0C5.396 0 .017 5.383.017 12.002c0 2.118.554 4.11 1.518 5.845L0 24l6.317-1.573a11.943 11.943 0 0 0 5.7 1.452h.005c6.621 0 12-5.383 12-12.002 0-6.62-5.379-12.001-12.005-12.001zm.005 21.993h-.005a9.973 9.973 0 0 1-5.088-1.396l-.365-.216-3.786.994 1.011-3.686-.238-.379a9.94 9.94 0 0 1-1.53-5.316c0-5.507 4.483-9.99 9.994-9.99 2.67 0 5.176 1.04 7.065 2.933a9.928 9.928 0 0 1 2.923 7.068c-.001 5.508-4.484 9.988-9.981 9.988z"/></svg>
+      Falar com o Jorge agora
+    </a>
+    <p class="footer-note">Foco exclusivo em afinamento e falhas capilares</p>
+
+    <button onclick="restartQuiz()" class="restart-button">Refazer o diagnóstico</button>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p>Jorge Cruz | Especialista em Recuperação Capilar</p>
+</footer>
+
+<script>
+  const WHATSAPP_NUMBER = "556298649993";
+
+  const questions = [
+    {
+      key: "situacao",
+      title: "Qual dessas situações mais parece com a sua rotina hoje?",
+      subtitle: "Escolha a que mais combina com você",
+      options: [
+        { text: "Evito luz forte e fotos de cima da cabeça", score: 3, tag: "evita exposição" },
+        { text: "Escondo a risca do cabelo com penteados", score: 3, tag: "disfarça a risca" },
+        { text: "Sinto o couro cabeludo aparecendo cada vez mais", score: 4, tag: "couro à mostra" },
+        { text: "Ainda não é tão visível, mas sinto que está piorando", score: 1, tag: "início da piora" }
+      ]
+    },
+    {
+      key: "tempo",
+      title: "Há quanto tempo você percebe a queda capilar?",
+      subtitle: "Isso nos ajuda a entender a evolução do seu caso",
+      options: [
+        { text: "Menos de 6 meses", score: 1, tag: "menos de 6 meses" },
+        { text: "De 6 meses a 2 anos", score: 2, tag: "de 6 meses a 2 anos" },
+        { text: "Mais de 2 anos", score: 4, tag: "mais de 2 anos" },
+        { text: "Não sei precisar, é gradual", score: 3, tag: "evolução gradual" }
+      ]
+    },
+    {
+      key: "area",
+      title: "Onde você mais nota o problema?",
+      subtitle: "Selecione a área mais afetada",
+      options: [
+        { text: "Topo da cabeça (coroa)", score: 4, tag: "topo da cabeça" },
+        { text: "Entradas / testa", score: 3, tag: "entradas" },
+        { text: "Risca de cabelo (parte central)", score: 3, tag: "risca de cabelo" },
+        { text: "De forma geral, por toda a cabeça", score: 4, tag: "de forma geral" }
+      ]
+    },
+    {
+      key: "historico",
+      title: "Você já tentou tratar isso antes?",
+      subtitle: "Não existe resposta errada aqui",
+      options: [
+        { text: "Já tentei shampoos e vitaminas, não resolveu", score: 3, tag: "já tentou cosméticos" },
+        { text: "Já fui a dermatologista, mas parei no meio", score: 3, tag: "tratamento interrompido" },
+        { text: "Nunca tratei, é a primeira vez que busco ajuda", score: 2, tag: "primeira busca" },
+        { text: "Uso minoxidil, mas os resultados são lentos", score: 3, tag: "usa minoxidil" }
+      ]
+    },
+    {
+      key: "impacto",
+      title: "Como isso tem afetado você no dia a dia?",
+      subtitle: "Seja sincera — isso importa para o seu diagnóstico",
+      options: [
+        { text: "Afeta minha autoestima e confiança", score: 4, tag: "afeta autoestima" },
+        { text: "Evito ambientes com muita luz ou vento", score: 3, tag: "evita exposição" },
+        { text: "Já mudou a forma como me visto e penteio", score: 3, tag: "mudou hábitos" },
+        { text: "Ainda não afeta muito, mas quero prevenir", score: 1, tag: "foco preventivo" }
+      ]
+    },
+    {
+      key: "objetivo",
+      title: "O que você mais deseja alcançar agora?",
+      subtitle: "Última pergunta antes do seu resultado",
+      options: [
+        { text: "Parar a queda o quanto antes", score: 3, tag: "estancar a queda" },
+        { text: "Preencher as áreas ralas e ganhar densidade", score: 4, tag: "ganhar densidade" },
+        { text: "Recuperar a autoestima de antes", score: 3, tag: "recuperar autoestima" },
+        { text: "Entender de verdade a causa raiz do problema", score: 2, tag: "entender a causa" }
+      ]
+    }
+  ];
+
+  const loadingMessages = [
+    "Cruzando suas respostas",
+    "Calculando compatibilidade com o Protocolo Pure Aloe",
+    "Identificando o estágio da sua queda capilar",
+    "Preparando seu diagnóstico personalizado"
+  ];
+
+  let currentIndex = 0;
+  const answers = new Array(questions.length).fill(null);
+
+  function playTestimonial() {
+    const container = document.getElementById('testimonial-video');
+    const videoId = container.getAttribute('data-video-id');
+    container.onclick = null;
+    container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0" title="Depoimento de cliente Pure Aloe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+  }
+
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startQuiz() {
+    currentIndex = 0;
+    showScreen('screen-quiz');
+    renderQuestion();
+  }
+
+  function restartQuiz() {
+    currentIndex = 0;
+    answers.fill(null);
+    showScreen('screen-intro');
+  }
+
+  function renderQuestion() {
+    const q = questions[currentIndex];
+    document.getElementById('quiz-step-label').innerText = `Pergunta ${currentIndex + 1} de ${questions.length}`;
+    const pct = Math.round(((currentIndex) / questions.length) * 100);
+    document.getElementById('quiz-percent-label').innerText = `${pct}%`;
+    document.getElementById('progress-fill').style.width = pct + '%';
+
+    const container = document.getElementById('question-container');
+
+    let html = `<h2 class="question-title">${q.title}</h2>`;
+    html += `<p class="question-subtitle">${q.subtitle}</p>`;
+    html += `<div class="option-list">`;
+    q.options.forEach((opt, i) => {
+      html += `
+        <button class="opt-btn" onclick="selectOption(${i})">
+          <span class="opt-dot"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="opt-label">${opt.text}</span>
+        </button>`;
+    });
+    html += `</div>`;
+
+    if (currentIndex > 0) {
+      html += `<button onclick="goBack()" class="back-button">
+        <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Voltar
+      </button>`;
+    }
+
+    container.innerHTML = html;
+  }
+
+  function selectOption(optionIndex) {
+    answers[currentIndex] = questions[currentIndex].options[optionIndex];
+    const buttons = document.querySelectorAll('#question-container .opt-btn');
+    buttons.forEach(b => b.classList.remove('selected'));
+    buttons[optionIndex].classList.add('selected');
+
+    setTimeout(() => {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        document.getElementById('progress-fill').style.width = '100%';
+        document.getElementById('quiz-percent-label').innerText = '100%';
+        setTimeout(runLoadingSequence, 350);
+      }
+    }, 380);
+  }
+
+  function goBack() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderQuestion();
+    }
+  }
+
+  function runLoadingSequence() {
+    showScreen('screen-loading');
+    const statusEl = document.getElementById('loading-status');
+    const fillEl = document.getElementById('loading-fill');
+    let step = 0;
+    fillEl.style.width = '8%';
+    statusEl.innerText = loadingMessages[0];
+
+    const interval = setInterval(() => {
+      step++;
+      if (step < loadingMessages.length) {
+        statusEl.innerText = loadingMessages[step];
+        fillEl.style.width = Math.round(((step + 1) / loadingMessages.length) * 100) + '%';
+      } else {
+        clearInterval(interval);
+        setTimeout(renderResult, 500);
+      }
+    }, 700);
+  }
+
+  function computeResult() {
+    const total = answers.reduce((sum, a) => sum + (a ? a.score : 0), 0);
+    const maxScore = questions.length * 4;
+    const compat = Math.min(98, Math.round(84 + (total / maxScore) * 14));
+
+    let tier;
+    if (total <= 12) tier = 'inicial';
+    else if (total <= 18) tier = 'moderado';
+    else tier = 'avancado';
+
+    return { total, compat, tier };
+  }
+
+  const tierContent = {
+    inicial: {
+      tag: 'Estágio Inicial',
+      tagColor: 'var(--primary-1)',
+      title: 'Seu quadro está no estágio inicial — a melhor fase para agir',
+      desc: 'A boa notícia: identificar o problema agora é o que separa quem apenas disfarça de quem realmente resolve. Nessa fase, o Protocolo Pure Aloe tende a responder mais rápido, prevenindo que a queda capilar avance para áreas maiores.'
+    },
+    moderado: {
+      tag: 'Estágio Moderado',
+      tagColor: 'var(--accent)',
+      title: 'Seu quadro está em estágio moderado de queda capilar',
+      desc: 'Suas respostas indicam uma queda capilar já perceptível, com impacto real na sua rotina. O Protocolo Pure Aloe foi desenhado justamente para casos assim: preencher as áreas ralas antes que a situação se torne mais difícil de reverter.'
+    },
+    avancado: {
+      tag: 'Estágio Avançado',
+      tagColor: 'var(--danger-text)',
+      title: 'Seu quadro está em estágio avançado — atenção redobrada',
+      desc: 'Pelo tempo de evolução e pela extensão relatada, seu caso pede uma avaliação prioritária. Quanto mais cedo o protocolo for iniciado, maiores as chances de recuperar densidade nas áreas mais comprometidas.'
+    }
+  };
+
+  function renderResult() {
+    const { compat, tier } = computeResult();
+    const content = tierContent[tier];
+
+    const tagEl = document.getElementById('result-tag');
+    tagEl.innerText = content.tag;
+    tagEl.style.background = 'var(--accent-soft)';
+    tagEl.style.color = content.tagColor;
+
+    document.getElementById('result-title').innerText = content.title;
+    document.getElementById('result-desc').innerText = content.desc;
+    document.getElementById('compat-value').innerText = compat + '%';
+
+    showScreen('screen-result');
+
+    setTimeout(() => {
+      document.getElementById('compat-fill').style.width = compat + '%';
+    }, 150);
+
+    const areaAnswer = answers[2] ? answers[2].tag : '';
+    const tempoAnswer = answers[1] ? answers[1].tag : '';
+    const objetivoAnswer = answers[5] ? answers[5].tag : '';
+
+    const message = `Olá! Fiz o Diagnóstico Capilar Pure Aloe no site.
+
+Meu resultado: ${content.tag} (${compat}% de compatibilidade com o protocolo).
+Tempo de queda: ${tempoAnswer}.
+Área mais afetada: ${areaAnswer}.
+Meu objetivo: ${objetivoAnswer}.
+
+Gostaria de agendar meu diagnóstico com o Jorge.`;
+
+    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    document.getElementById('whatsapp-cta').setAttribute('href', waLink);
+  }
+</script>
+</body>
+</html>
