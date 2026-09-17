@@ -451,11 +451,14 @@
   let currentIndex = 0;
   const answers = new Array(questions.length).fill(null);
 
-  function playTestimonial() {
+  function playTestimonial(muted) {
     const container = document.getElementById('testimonial-video');
+    if (!container || container.dataset.playing === '1') return;
+    container.dataset.playing = '1';
     const videoId = container.getAttribute('data-video-id');
     container.onclick = null;
-    container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0" title="Depoimento de cliente Pure Aloe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+    const muteParam = muted ? '&mute=1' : '';
+    container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0${muteParam}" title="Depoimento de cliente Pure Aloe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
   }
 
   function showScreen(id) {
@@ -505,7 +508,6 @@
 
     container.innerHTML = html;
   }
-
   function selectOption(optionIndex) {
     answers[currentIndex] = questions[currentIndex].options[optionIndex];
     const buttons = document.querySelectorAll('#question-container .opt-btn');
@@ -599,6 +601,7 @@
     document.getElementById('compat-value').innerText = compat + '%';
 
     showScreen('screen-result');
+    playTestimonial(true);
 
     setTimeout(() => {
       document.getElementById('compat-fill').style.width = compat + '%';
