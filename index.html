@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Diagnóstico Capilar Gratuito | Pure Aloe</title>
 <meta name="description" content="Descubra em 60 segundos o estágio da sua queda capilar e se o Protocolo Pure Aloe é compatível com o seu caso.">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1290731715434171');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1290731715434171&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
@@ -354,7 +371,7 @@
       </div>
     </div>
 
-    <a id="whatsapp-cta" href="#" target="_blank" rel="noopener" class="whatsapp-cta">
+    <a id="whatsapp-cta" href="#" target="_blank" rel="noopener" class="whatsapp-cta" onclick="fireLeadEvent()">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.017 0C5.396 0 .017 5.383.017 12.002c0 2.118.554 4.11 1.518 5.845L0 24l6.317-1.573a11.943 11.943 0 0 0 5.7 1.452h.005c6.621 0 12-5.383 12-12.002 0-6.62-5.379-12.001-12.005-12.001zm.005 21.993h-.005a9.973 9.973 0 0 1-5.088-1.396l-.365-.216-3.786.994 1.011-3.686-.238-.379a9.94 9.94 0 0 1-1.53-5.316c0-5.507 4.483-9.99 9.994-9.99 2.67 0 5.176 1.04 7.065 2.933a9.928 9.928 0 0 1 2.923 7.068c-.001 5.508-4.484 9.988-9.981 9.988z"/></svg>
       Falar com o Jorge agora
     </a>
@@ -450,6 +467,16 @@
 
   let currentIndex = 0;
   const answers = new Array(questions.length).fill(null);
+  let lastResultTier = null;
+
+  function fireLeadEvent() {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: 'Diagnóstico Capilar Pure Aloe',
+        content_category: lastResultTier || 'indefinido'
+      });
+    }
+  }
 
   function playTestimonial(muted) {
     const container = document.getElementById('testimonial-video');
@@ -590,6 +617,7 @@
   function renderResult() {
     const { compat, tier } = computeResult();
     const content = tierContent[tier];
+    lastResultTier = tier;
 
     const tagEl = document.getElementById('result-tag');
     tagEl.innerText = content.tag;
